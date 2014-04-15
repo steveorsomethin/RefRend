@@ -1,0 +1,18 @@
+{
+    "name": "RefRend",
+    "version": "0.0.1",
+    "description": "Reference renderer",
+    "homepage": "https://github.com/steveorsomethin/RefRend",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/steveorsomethin/RefRend"
+    },
+    "author": {
+        "name": "Steve McGuire",
+        "url": "https://github.com/steveorsomethin"
+    },
+
+    "devDependencies": {
+        "express": "3.x.x"
+    }
+}
