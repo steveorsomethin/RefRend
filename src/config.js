@@ -1,5 +1,3 @@
-'use strict';
-
 /* 
  * Config for bootstrapping the application, and mapping dependencies
  */
@@ -11,11 +9,6 @@ var require = {
         // Libs
         three: './deps/three',
         threeStats: './deps/stats.min',
-        rx: './deps/rx',
-        rxBinding: './deps/rx.binding',
-        rxTime: './deps/rx.time',
-        rxDom: './deps/rx.dom',
-        gen: './deps/gen',
         // Modules
         application: './application'
     },
