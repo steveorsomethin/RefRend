@@ -3,9 +3,11 @@
  */
 define(['three', 'threeStats'],
 function(THREE, Stats) {
-    var container = document.getElementById('shell'),
+    var innerWidth = window.innerWidth,
+        innerHeight = window.innerHeight,
+        container = document.getElementById('shell'),
         stats = new Stats(),
-        camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000),
+        camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 1, 1000),
         scene = new THREE.Scene(),
         renderer = new THREE.WebGLRenderer(),
         geometry = new THREE.CubeGeometry(200, 200, 200),
@@ -20,13 +22,14 @@ function(THREE, Stats) {
         geometry.faces[i + 1].color.setHex(hex);
     }
 
-    camera.position.y = -100;
+    camera.position.x = -300;
+    camera.position.y = 300;
     camera.position.z = 1000;
 
     cube.position.y = 150;
     scene.add(cube);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(innerWidth, innerHeight);
     container.appendChild(renderer.domElement);
 
     stats.domElement.style.position = 'absolute';
@@ -38,10 +41,10 @@ function(THREE, Stats) {
     animate();
 
     function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.aspect = innerWidth / innerHeight;
         camera.updateProjectionMatrix();
 
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(innerWidth, innerHeight);
     }
 
     function animate() {
