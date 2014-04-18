@@ -8,8 +8,9 @@ var mapRoute = function(httpPath, fsPath) {
     app.use(httpPath, express.static(__dirname + '/' + fsPath));
 };
 
-mapRoute('/', '../src');
-mapRoute('/cdn', '../dev/cdn');
+mapRoute('/', '../');
+mapRoute('/src', '../src');
+mapRoute('/dev/cdn', '../dev/cdn');
 mapRoute('/deps', '../deps');
 mapRoute('/test', '../test');
 

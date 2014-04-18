@@ -169,11 +169,8 @@ define([], function() {
         return out;
     }
 
-    function makeIdentity() {
-        var args = Array.prototype.slice.call(arguments, 0),
-            argLen = args.length,
-            dimension = argLen + 1,
-            out = new Array(dimension * dimension),
+    function makeIdentity(dimension) {
+        var out = new Array(dimension * dimension),
             offset,
             row,
             col;
