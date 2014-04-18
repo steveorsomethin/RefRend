@@ -124,7 +124,5 @@ function(THREE, Stats, matrix) {
         }
     }
 
-    
-
     console.log('Application started');
 });
