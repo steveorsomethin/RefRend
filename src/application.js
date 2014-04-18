@@ -2,7 +2,7 @@
 /*
  * Main application entry point
  */
-define(['three', 'threeStats', './math/matrix'],
+define(['three', 'threeStats', 'matrix'],
 function(THREE, Stats, matrix) {
     var innerWidth = window.innerWidth,
         innerHeight = window.innerHeight,
