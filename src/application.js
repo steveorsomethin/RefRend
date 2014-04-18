@@ -11,7 +11,55 @@ function(THREE, Stats, matrix) {
         context = canvas.getContext('2d'),
         stats = new Stats(),
         deg = 0,
-        points = [[200, 200, 0], [400, 200, 0], [300, 400, 0]];
+        points = [
+            // Front
+            [-1, -1, 1],
+            [1, -1, 1],
+            [1, 1, 1],
+            [-1, -1, 1],
+            [1, 1, 1],
+            [-1, 1, 1],
+
+            // Top
+            [-1, -1, 1],
+            [-1, -1, -1],
+            [1, -1, -1],
+            [-1, -1, 1],
+            [1, -1, -1],
+            [1, -1, 1],
+
+            //Left
+            [-1, -1, 1],
+            [-1, 1, 1],
+            [-1, 1, -1],
+            [-1, -1, 1],
+            [-1, 1, -1],
+            [-1, -1, -1],
+
+            // Back
+            [-1, -1, -1],
+            [1, -1, -1],
+            [1, 1, -1],
+            [-1, -1, -1],
+            [1, 1, -1],
+            [-1, 1, -1],
+
+            // Bottom
+            [-1, 1, 1],
+            [-1, 1, -1],
+            [1, 1, -1],
+            [-1, 1, 1],
+            [1, 1, -1],
+            [1, 1, 1],
+
+            //Left
+            [1, -1, 1],
+            [1, 1, 1],
+            [1, 1, -1],
+            [1, -1, 1],
+            [1, 1, -1],
+            [1, -1, -1]
+        ];
 
     onWindowResize();
     shell.appendChild(canvas);
@@ -44,26 +92,36 @@ function(THREE, Stats, matrix) {
             rotY = matrix.makeRotationY(degrees),
             rotZ = matrix.makeRotationZ(degrees),
             rot = matrix.multiply(rotZ, matrix.multiply(rotX, rotY)),
-            trans = matrix.makeTranslation(-300, -300, -50),
-            invTrans = matrix.makeTranslation(300, 300, 50),
+            scale = matrix.makeScale(100, 100, 100),
+            // rot = matrix.makeIdentity(4),
+            trans = matrix.makeTranslation(-50, -50, -50),
+            invTrans = matrix.makeTranslation(400, 400, 400),
             rotTrans = matrix.multiply(rot, trans),
-            mat = matrix.multiply(invTrans, rotTrans),
-            p1 = matrix.multiplyVector(mat, points[0]),
-            p2 = matrix.multiplyVector(mat, points[1]),
-            p3 = matrix.multiplyVector(mat, points[2]);
+            mat = matrix.multiply(matrix.multiply(invTrans, rotTrans), scale),
+            i,
+            p1, p2, p3;
 
         context.fillStyle = 'rgba(0, 0, 0, 1.0)';
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        context.fillStyle = 'rgba(200, 0, 0, 1.0)';
+        context.fillStyle = 'rgba(255, 0, 0, 1.0)';
         context.strokeStyle = '#FF0000';
-        context.beginPath();
-        context.moveTo(p1[0], p1[1]);
-        context.lineTo(p2[0], p2[1]);
-        context.lineTo(p3[0], p3[1]);
-        context.closePath();
-        context.stroke();
-        context.fill();
+
+        for (i = 0; i < points.length; i += 3) {
+            context.beginPath();
+
+            p1 = matrix.multiplyVector(mat, points[i]);
+            p2 = matrix.multiplyVector(mat, points[i + 1]);
+            p3 = matrix.multiplyVector(mat, points[i + 2]);
+
+            context.moveTo(p1[0], p1[1]);
+            context.lineTo(p2[0], p2[1]);
+            context.lineTo(p3[0], p3[1]);
+
+            context.closePath();
+            context.stroke();
+            context.fill();
+        }
     }
 
     
