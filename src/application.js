@@ -89,11 +89,10 @@ function(THREE, Stats, matrix, vector) {
     function render() {
         var degrees = deg++,
             rotX = matrix.makeRotationX(degrees),
-            rotY = matrix.makeRotationY(degrees),
-            rotZ = matrix.makeRotationZ(degrees),
+            rotY = matrix.makeRotationY(degrees / 2),
+            rotZ = matrix.makeRotationZ(degrees / 3),
             rot = matrix.multiply(rotZ, matrix.multiply(rotX, rotY)),
             scale = matrix.makeScale(100, 100, 100),
-            // rot = matrix.makeIdentity(4),
             trans = matrix.makeTranslation(-50, -50, -50),
             invTrans = matrix.makeTranslation(400, 400, 400),
             rotTrans = matrix.multiply(rot, trans),
