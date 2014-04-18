@@ -10,7 +10,8 @@ var require = {
         three: './deps/three',
         threeStats: './deps/stats.min',
         // Modules
-        application: './application'
+        application: './src/application',
+        matrix: './src/math/matrix'
     },
 
     shim: {
