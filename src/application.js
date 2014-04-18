@@ -98,20 +98,27 @@ function(THREE, Stats, matrix, vector) {
             rotTrans = matrix.multiply(rot, trans),
             mat = matrix.multiply(matrix.multiply(invTrans, rotTrans), scale),
             i,
-            p1, p2, p3;
+            p1, p2, p3,
+            faceNormal;
 
         context.fillStyle = 'rgba(0, 0, 0, 1.0)';
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        context.fillStyle = 'rgba(255, 0, 0, 1.0)';
+        context.fillStyle = 'rgba(255, 0, 0, 0.5)';
         context.strokeStyle = '#FF0000';
 
         for (i = 0; i < points.length; i += 3) {
-            context.beginPath();
-
             p1 = matrix.multiplyVector(mat, points[i]);
             p2 = matrix.multiplyVector(mat, points[i + 1]);
             p3 = matrix.multiplyVector(mat, points[i + 2]);
+
+            faceNormal = vector.cross(p1, p2);
+
+            // if (vector.dot(faceNormal, [0, 0, 0]) >= 0) {
+            //     continue;
+            // }
+
+            context.beginPath();
 
             context.moveTo(p1[0], p1[1]);
             context.lineTo(p2[0], p2[1]);
