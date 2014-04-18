@@ -11,6 +11,7 @@ var require = {
         threeStats: './deps/stats.min',
         // Modules
         application: './src/application',
+        vector: './src/math/vector',
         matrix: './src/math/matrix'
     },
 

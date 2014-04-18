@@ -2,8 +2,8 @@
 /*
  * Main application entry point
  */
-define(['three', 'threeStats', 'matrix'],
-function(THREE, Stats, matrix) {
+define(['three', 'threeStats', 'matrix', 'vector'],
+function(THREE, Stats, matrix, vector) {
     var innerWidth = window.innerWidth,
         innerHeight = window.innerHeight,
         shell = document.getElementById('shell'),
