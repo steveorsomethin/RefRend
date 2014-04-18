@@ -3,7 +3,7 @@
  */
 
 var require = {
-    baseUrl: './',
+    baseUrl: '../',
 
     paths: {
         // Libs
